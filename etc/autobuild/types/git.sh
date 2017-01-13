@@ -5,7 +5,6 @@ mode=$1
 
 source "/etc/autobuild/settings.sh"
 source "/etc/autobuild/projectSettings.sh"
-# Build script at /etc/autobuild/build.sh
 
 if [ $mode == "build" ]
 then
@@ -21,8 +20,8 @@ then
 
     for tagName in $(git tag)
     do
-        tag=$(basename $tag)
-        buildFilename="build-$tag.tar.gz"
+        tagName=$(basename $tagName)
+        buildFilename="build-$tagName.tar.gz"
         buildOutputPath="$outputDirectory/$buildFilename"
 
         if [ -f $buildOutputPath ]
@@ -33,9 +32,10 @@ then
             git checkout $tagName
 
             # TODO: Implement build types too
-            /etc/autobuild/build.sh $buildFilename
+            /etc/autobuild/build.sh $buildOutputPath $buildFilename
         fi
     done
-elif [ $mode == "bootstrap" ] then
+elif [ $mode == "bootstrap" ]
+then
     apt-get install -y git
 fi

@@ -160,7 +160,7 @@ function getTypeFile()
 function buildProject()
 {
     buildScript=$1
-    settingsScript=$3
+    settingsScript=$2
     bootstrapScript=$3
     projectSettingsScript=$4
     projectTypeScriptPath=$5
@@ -259,8 +259,10 @@ function buildProject()
             echo "===================== Entering Chroot =============================="
             echo "At $chrootDestination"
 
-            cp $buildScript "$chrootDestination/build.sh"
-            chroot $chrootDestination ./build.sh $distribution $version $architecture
+            cp $buildScript "$chrootDestination/etc/autobuild/build.sh"
+
+            chroot $chrootDestination "/etc/autobuild/type.sh" bootstrap
+            chroot $chrootDestination "/etc/autobuild/type.sh" build
 
             if [ $? -ne 0 ]
             then

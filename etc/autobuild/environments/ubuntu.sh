@@ -26,6 +26,3 @@ echo "deb http://archive.ubuntu.com/ubuntu/ $version-backports main restricted u
 
 apt-get update -y
 apt-get upgrade -y
-
-# FIXME: Move to a generated bootstrap script
-apt-get install -y git
