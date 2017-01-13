@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: $1"
+else
+    sudo -u autobuild --set-home ssh-copy-id $1
+fi

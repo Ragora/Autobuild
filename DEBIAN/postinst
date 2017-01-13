@@ -1,0 +1,4 @@
+#!/bin/bash
+
+useradd --comment "Autobuild user." --create-home --system --shell=/bin/bash autobuild
+sudo -u autobuild --set-home ssh-keygen -t rsa -b 4096 -f /home/autobuild/.ssh/id_rsa -P ""

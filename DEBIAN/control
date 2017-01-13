@@ -1,0 +1,6 @@
+PACKAGE: Autobuild
+Version: 0.1
+Architecture: all
+Maintainer: Robert MacGregor
+Description: Bollocks
+Depends: bash, debootstrap, git

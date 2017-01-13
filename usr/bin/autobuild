@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source /etc/autobuild/settings.sh
+
+if [ $quietBuild -eq 1 ]
+then
+    sudo -u $userName --set-home /etc/autobuild/autobuild.sh > $statusFile
+else
+    if [ $measureTimes -eq 0 ]
+    then
+        sudo -u $userName --set-home /etc/autobuild/autobuild.sh | tee $statusFile
+    else
+        time sudo -u $userName --set-home /etc/autobuild/autobuild.sh | tee $statusFile
+    fi
+fi
